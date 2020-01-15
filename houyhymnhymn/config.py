@@ -1,4 +1,4 @@
-from local_settings import GOOGLE_CREDENTIALS_FILE
+from .local_settings import GOOGLE_CREDENTIALS_FILE
 
 GOOGLE_CREDENTIALS = {
     'type': 'service_account_file',
