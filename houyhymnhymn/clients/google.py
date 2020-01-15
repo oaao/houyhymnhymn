@@ -36,3 +36,28 @@ class GoogleAPI:
 
     def _build_client(self):
         return googleapiclient.discovery.build(self.api_name, self.api_version, credentials=self.credentials)
+
+
+class YoutubeAPI(GoogleAPI):
+
+    def __init__(self, credentials_config, scopes=None, debug=False):
+
+        super().__init__(
+            credentials_config,
+            api_name='youtube',
+            api_version='v3',
+            scopes=scopes,
+            debug=debug,
+        )
+
+
+    def search(self, query, max_results=25):
+
+        req = self.client.search().list(
+            part='snippet',
+            maxResults=max_results,
+            q=query
+        )
+
+        resp = req.execute()
+        return resp
